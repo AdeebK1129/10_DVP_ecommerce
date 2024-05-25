@@ -59,7 +59,7 @@ Build packages by running:
 Install packages:
 pip-sync requirements_env/main.txt requirements_env/dev.txt
 
-## **Node EnvironmentSet Up**
+## **Node Environment Set Up**
 Activate python virtual environment
 Install nodejs 20.11.1 (the latest LTS(long-term) version at this time), anywhere you want.
 nodeenv --node=20.11.1 --prebuilt env_node_20.11.1
