@@ -30,7 +30,7 @@ source env_3.11.5/bin/activate
 
 pip install django
 pip install psycopg2-binary
-pip install jupyter ***done for testing graphs in notebooks
+pip install jupyter 
 pip install pandas
 pip install matplotlib
 pip install nodeenv
@@ -41,6 +41,7 @@ touch main.in
 touch dev.in
 
 Inside dev.in: 
+
 -c main.txt
 
 nodeenv
@@ -49,17 +50,21 @@ jupyter
 jupyterlab
 
 Inside main.in:
+
 django==4.2
 
 Build packages by running:
-	pip install --upgrade pip-tools pip setuptools wheel
- 	pip-compile --upgrade --generate-hashes --output-file requirements_env/main.txt requirements_env/main.in
-  	pip-compile --upgrade --generate-hashes --output-file requirements_env/dev.txt requirements_env/dev.in 
+
+pip install --upgrade pip-tools pip setuptools wheel
+pip-compile --upgrade --generate-hashes --output-file requirements_env/main.txt requirements_env/main.in
+pip-compile --upgrade --generate-hashes --output-file requirements_env/dev.txt requirements_env/dev.in 
 
 Install packages:
+
 pip-sync requirements_env/main.txt requirements_env/dev.txt
 
-## **Node Environment Set Up**
+## Node Environment Set Up
+
 Activate python virtual environment
 Install nodejs 20.11.1 (the latest LTS(long-term) version at this time), anywhere you want.
 nodeenv --node=20.11.1 --prebuilt env_node_20.11.1
