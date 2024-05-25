@@ -67,8 +67,12 @@ pip-sync requirements_env/main.txt requirements_env/dev.txt
 
 Activate python virtual environment
 Install nodejs 20.11.1 (the latest LTS(long-term) version at this time), anywhere you want.
+
 nodeenv --node=20.11.1 --prebuilt env_node_20.11.1
+
 Deactivate your python => deactivate
+
 Activate your node env
+
 source env_node_20.11.1/bin/activate
 
