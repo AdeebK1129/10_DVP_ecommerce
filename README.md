@@ -6,7 +6,7 @@ In this project, a basic e-commerce website will be developed with Vue on the fr
 ***NOTE***
 This project is going to be run off of python and node virtual environments that have not been added to the repository. Additionally, connections to our PostgreSQL database are made locally via a gitignored secrets.json file. To get this project to run on your own device, these modifications will have to be made. 
 
-**Environment Set Up (MacOS)**
+## ** Python Environment Set Up (MacOS)**
 
 *assuming pyenv versions are already installed 
 *** indicate steps that are NOT needed if pyenv already installed
@@ -35,7 +35,7 @@ pip install pandas
 pip install matplotlib
 pip install nodeenv
 
-**Django Environment Set Up**
+## **Django Environment Set Up**
 mkdir requirements_env
 touch main.in
 touch dev.in
@@ -59,7 +59,7 @@ Build packages by running:
 Install packages:
 pip-sync requirements_env/main.txt requirements_env/dev.txt
 
-**Node EnvironmentSet Up**
+## **Node EnvironmentSet Up**
 Activate python virtual environment
 Install nodejs 20.11.1 (the latest LTS(long-term) version at this time), anywhere you want.
 nodeenv --node=20.11.1 --prebuilt env_node_20.11.1
