@@ -1,0 +1,1 @@
+AdeebK --2024-05-25 15:49: Initialized Django apps, designed DB Diagram for project, initialized optimal Git Ignore file, created environment set up and and desgin doc, created site map
