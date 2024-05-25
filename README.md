@@ -76,3 +76,8 @@ Activate your node env
 
 source env_node_20.11.1/bin/activate
 
+## API In Use
+https://fakestoreapi.com/docs 
+This is a public API and thus there will be no need to get a personal primary key. All fetch requests are done automatically with no need to configure anything on RapidAPI or make any payment plan.
+
+
