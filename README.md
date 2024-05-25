@@ -6,7 +6,7 @@ In this project, a basic e-commerce website will be developed with Vue on the fr
 ***NOTE***
 This project is going to be run off of python and node virtual environments that have not been added to the repository. Additionally, connections to our PostgreSQL database are made locally via a gitignored secrets.json file. To get this project to run on your own device, these modifications will have to be made. 
 
-## ** Python Environment Set Up (MacOS)**
+## Python Environment Set Up (MacOS)
 
 *assuming pyenv versions are already installed 
 *** indicate steps that are NOT needed if pyenv already installed
