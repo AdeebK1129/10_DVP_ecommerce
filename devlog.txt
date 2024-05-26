@@ -1,1 +1,3 @@
 AdeebK --2024-05-25 15:49: Initialized Django apps, designed DB Diagram for project, initialized optimal Git Ignore file, created environment set up and and desgin doc, created site map
+
+AdeebK --2024-05-26 00:50: Created fully functional custom user authentication system with a log in and sign up page that adds users and their encrypted passwords to the database. Added basic home page, registration page, and log in page for this to function. 
