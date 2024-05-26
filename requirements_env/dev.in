@@ -1,0 +1,6 @@
+-c main.txt
+
+nodeenv
+django-extensions
+jupyter
+jupyterlab
