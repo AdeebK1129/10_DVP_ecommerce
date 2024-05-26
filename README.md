@@ -6,12 +6,12 @@ Adeeb Khan, John Chandler, Jeff Chen, Tyler Chan
 In this project, a basic e-commerce website will be developed with Vue on the front end and Django and PostgreSQL on the backend (DVP stack). Additionally, Pandas and Matplotlib Python libraries will be used to generate graphs to be displayed on the UI based on data received from a public API.  
 
 ***NOTE***
-This project is going to be run off of python and node virtual environments that have not been added to the repository. Additionally, connections to our PostgreSQL database are made locally via a gitignored secrets.json file. To get this project to run on your own device, these modifications will have to be made. 
+This project will be run off of Python and node virtual environments that have not been added to the repository. Additionally, connections to our PostgreSQL database are made locally via a gitignored secrets.json file. To get this project to run on your device, these modifications will have to be made. 
 
 ## Python Environment Set Up (MacOS)
 
 *assuming pyenv versions are already installed 
-*** indicate steps that are NOT needed if pyenv already installed
+*** indicate steps that are NOT needed if pyenv is already installed
 
 ```
 curl https://pyenv.run | bash
@@ -89,7 +89,7 @@ This is a public API and thus there will be no need to get a personal primary ke
 ## How to run
 WE ARE ASSUMING THE USER HAS PGADMIN AND IS WILLING TO LINK THEIR OWN DATABASE TO TEST
 
-As such, we have put a secret_template.json file in the ecommerce inner project folder. Simply rename this file to be secrets.json and fill in the information for your own PostgreSQL database.
+As such, we have put a secrets_template.json file in the ecommerce inner project folder. Simply rename this file to be secrets.json and fill in the information for your own PostgreSQL database.
 
 secrets.json Template
 ```
