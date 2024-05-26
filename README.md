@@ -40,10 +40,11 @@ pip install nodeenv
 ```
 
 ## **Django Environment Set Up**
+```
 mkdir requirements_env
 touch main.in
 touch dev.in
-
+```
 Inside dev.in: 
 ```
 -c main.txt
@@ -107,8 +108,11 @@ In one terminal window, the user should navigate to the vue_ecommerce folder and
 npm run dev
 
 In another terminal window, the user should navigate to the first ecommerce folder in their directory and run 
+```
 python manage.py makemigrations
+python manage.py migrate
 python manage.py runserver
+```
 
 The user should go to the URL prompted by this which is likely to look something like http://localhost:8000. Do note that this url is determined by what was put in the secrets.json file so if the user puts a different specified URL in secrets.json, the URL will look different. 
 
