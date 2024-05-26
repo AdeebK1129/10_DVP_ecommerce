@@ -1,11 +1,27 @@
-{% extends "base.html" %}
+{% extends "core/base.html" %}
 
 {% block content %}
 <div class="jumbotron">
-    <h1 class="display-4">Welcome to Alimama!</h1>
-    <p class="lead">This is a home page.</p>
+    <h1 class="display-4">Welcome to Alimama</h1>
+    <p class="lead">An ecommerce platform for clothing, accessories, and jewelry.</p>
     <hr class="my-4">
     <p>Made by Adeeb, John, Tyler, and Jeff</p>
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+</div>
+
+<div class="container mt-5">
+    <h2 class="mb-4">Featured Categories</h2>
+    <div class="row">
+        {% for category in categories %}
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-center">{{ category|title }}</h5>
+                    <a href="{% url 'core:category' category %}" class="btn btn-primary btn-block">View Products</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
