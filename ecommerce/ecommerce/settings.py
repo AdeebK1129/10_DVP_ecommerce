@@ -27,7 +27,7 @@ def get_secret(setting, secrets=secrets):
     try:
         return secrets[setting]
     except KeyError:
-        error_msg = 'Set the {} environment variable'.format(setting)
+        error_msg = 'Set the {0} environment variable'.format(setting)
         raise ImproperlyConfigured(error_msg)
 
 # Quick-start development settings - unsuitable for production
@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'shop',
     'users',
     'core',
+    'django_extensions',
+    'django_vite',
 ]
 
 MIDDLEWARE = [
@@ -141,8 +143,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "ecommerce_static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+DJANGO_VITE_ASSETS_PATH = os.path.join(BASE_DIR, "core", "static", "vite")
+DJANGO_VITE_DEV_SERVER_PORT = get_secret("vite_dev_server_port")
+DJANGO_VITE_STATIC_URL_PREFIX = "vite/"
+DJANGO_VITE_DEV_MODE = True # This line has to be removed in production
