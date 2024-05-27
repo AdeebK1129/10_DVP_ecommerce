@@ -37,6 +37,8 @@ pip install jupyter
 pip install pandas
 pip install matplotlib
 pip install nodeenv
+pip install django_vite
+pip install django_extensions
 ```
 
 ## **Django Environment Set Up**
@@ -56,7 +58,8 @@ jupyterlab
 ```
 Inside main.in:
 ```
-django==4.2
+django
+django_vite
 ```
 Build packages by running:
 ```
