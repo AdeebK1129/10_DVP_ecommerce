@@ -103,12 +103,16 @@ secrets.json Template
     "database_user": "YOURDATABASEUSER",
     "database_pwd": "YOURDATABASEPW", 
     "database_host": "localhost", 
-    "database_port": "5432"
+    "database_port": "5432",
+    "vite_dev_server_port": "5173"
 }
 ```
 
 In one terminal window, the user should navigate to the vue_ecommerce folder and run
+```
+npm install
 npm run dev
+```
 
 In another terminal window, the user should navigate to the first ecommerce folder in their directory and run 
 ```
