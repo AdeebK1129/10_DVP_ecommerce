@@ -39,6 +39,7 @@ pip install matplotlib
 pip install nodeenv
 pip install django_vite
 pip install django_extensions
+pip install requests #in case an error arises in a views.py about missing request
 ```
 
 ## **Django Environment Set Up**
