@@ -1,15 +1,17 @@
 {% extends "core/base.html" %}
 {% load django_vite %}
-{% load static %}
 
 {% block content %}
+<h1>Hello World Django</h1>
+<br><br>
 <div id="app"> 
     <app></app>
 </div>
-{% endblock %}
+{% endblock content %}
 
 {% block js %}
     {{ block.super }}
+    
     {% vite_hmr_client %}
-    {% vite_asset 'src/apps/dummy/dummy.js' %}
+    {% vite_asset 'src/apps/product_show/product_show.js' %}
 {% endblock js %}

@@ -1,0 +1,33 @@
+# Secrets
+secrets.json
+
+# Virtual environments
+env_3.11.5
+env_node_20.11.1
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment (other potential names)
+venv/
+env/
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Local development settings
+local_settings.py
+
+# IDEs and editors
+.vscode/
+.idea/
+
+#Node
+node_modules
