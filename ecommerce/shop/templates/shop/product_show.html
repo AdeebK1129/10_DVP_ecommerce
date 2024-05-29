@@ -2,16 +2,20 @@
 {% load django_vite %}
 
 {% block content %}
-<h1>Hello World Django</h1>
-<br><br>
-<div id="app"> 
-    <app></app>
-</div>
-{% endblock content %}
+    <div id="app">
+        <product-show></product-show>
+    </div>
+{% endblock %}
 
 {% block js %}
     {{ block.super }}
-    
+    <script>
+        var ext_csrf_token = '{{ csrf_token }}';
+        var ext_product_id = {{ product_id }};
+        var ext_product_show_json_url = '{% url "shop:product_show_json" product_id %}';
+        var ext_add_to_favorites_url = '{% url "shop:add_to_favorites" product_id %}';
+        var ext_remove_from_favorites_url = '{% url "shop:remove_from_favorites" product_id %}';
+    </script>
     {% vite_hmr_client %}
     {% vite_asset 'src/apps/product_show/product_show.js' %}
-{% endblock js %}
+{% endblock %}

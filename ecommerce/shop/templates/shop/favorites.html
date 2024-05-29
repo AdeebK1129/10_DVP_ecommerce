@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Your Favorites</h2>
+    <div class="row">
+        {% for favorite in favorites %}
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm">
+                <img src="{{ favorite.product.image }}" class="card-img-top" alt="{{ favorite.product_name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ favorite.product_name }}</h5>
+                    <p class="card-text">${{ favorite.product.price }}</p>
+                    <a href="{% url 'shop:product_show' favorite.product_id %}" class="btn btn-primary btn-block">View Product</a>
+                    <button @click="removeFavorite(favorite.product_id)" class="btn btn-danger btn-block">Remove from Favorites</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
