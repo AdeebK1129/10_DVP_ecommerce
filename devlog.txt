@@ -13,3 +13,5 @@ TylerC --2024-05-05-30 14:48: Added Vue app for favorites section, replacing Dja
 AdeebK --2024-06-03 02:13: Created models for Product, added notebook to populate database with Products from Public API. Updated design doc, setup documentation, and db diagram. 
 
 JeffC --2024-06-03 12:55: began using pandas to sort data, created a graph to model the average price for each category, will continue to work on more graphs 
+
+JeffC --2024-06-03 14:45: got the first matplotlib graph displaying in django views, will work on graphs for each product 
