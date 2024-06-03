@@ -11,3 +11,5 @@ AdeebK --2024-05-29 14:37: Fixed bug in Django to Vue configuration. Set up basi
 TylerC --2024-05-05-30 14:48: Added Vue app for favorites section, replacing Django template. Awaiting models reconfiguration for addition of products.
 
 AdeebK --2024-06-03 02:13: Created models for Product, added notebook to populate database with Products from Public API. Updated design doc, setup documentation, and db diagram. 
+
+JeffC --2024-6-03 12:55: began using pandas to sort data, created a graph to model the average price for each category, will continue to work on more graphs 
