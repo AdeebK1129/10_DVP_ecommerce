@@ -115,12 +115,20 @@ npm install
 npm run dev
 ```
 
+
 In another terminal window, the user should navigate to the first ecommerce folder in their directory and run 
 ```
 python manage.py makemigrations
 python manage.py migrate
+```
+
+In the folder notebooks, navigate to product_db.ipynb and run the notebook in order. If during the first cell any modules are missing when it is run, be sure to promptly pip install them into your python environment if you haven’t already. Running this notebook will populate your Products database. 
+
+Now back in terminal:
+```
 python manage.py runserver
 ```
+
 
 The user should go to the URL prompted by this which is likely to look something like http://localhost:8000. Do note that this url is determined by what was put in the secrets.json file so if the user puts a different specified URL in secrets.json, the URL will look different. 
 

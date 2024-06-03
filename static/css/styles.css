@@ -1,0 +1,116 @@
+/* Ensure the card image fits properly */
+.card-img-top-container {
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img-top {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+}
+
+/* Ensure the card body takes full height and button stays at the bottom */
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #333;
+}
+
+.btn {
+    margin-top: auto;
+}
+
+/* New styles for favorites functionality */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+
+.favorites-container {
+    padding: 20px;
+}
+
+.favorites-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.favorite-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.favorite-image {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.favorite-details {
+    flex: 1;
+}
+
+.favorite-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.remove-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.no-favorites {
+    text-align: center;
+    font-size: 18px;
+}
+
