@@ -5,3 +5,9 @@ AdeebK --2024-05-26 00:50: Created fully functional custom user authentication s
 AdeebK --2024-05-26 02:07: Added featured categories section that fetches all categories from API and then makes individual pages for products of the specific category comprised of products of the category from the API. 
 
 AdeebK --2024-05-27 16:39: Added URL to product detail page, preparing connection to Dummy Vue app to test configuration. 
+
+AdeebK --2024-05-29 14:37: Fixed bug in Django to Vue configuration. Set up basic layout for favorites list page. 
+
+TylerC --2024-05-05-30 14:48: Added Vue app for favorites section, replacing Django template. Awaiting models reconfiguration for addition of products.
+
+AdeebK --2024-06-03 02:13: Created models for Product, added notebook to populate database with Products from Public API. Updated design doc, setup documentation, and db diagram. 
