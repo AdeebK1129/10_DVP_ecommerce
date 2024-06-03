@@ -11,18 +11,12 @@ import requests
 def home(request):
     response = requests.get('https://fakestoreapi.com/products/categories')
     categories = response.json()
-    
     products = Product.objects.values('category', 'price')
-    
     df_products = pd.DataFrame(list(products))
-    
     categorygroup = df_products.groupby('category')
-
     avgpricecategory = categorygroup['price'].mean()
     avgpricecategory = avgpricecategory.reset_index()
-
     avgpricecategory.plot(kind='bar', x='category', y='price', figsize=(10, 6))
-
     plt.xlabel('Category')
     plt.ylabel('Average Price')
     plt.title('Average Price by Category')
