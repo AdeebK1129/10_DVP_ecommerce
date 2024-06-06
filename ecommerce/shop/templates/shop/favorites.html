@@ -10,9 +10,8 @@
 {% block js %}
     {{ block.super }}
     <script>
+        var ext_csrf_token = "{{ csrf_token }}";
     </script>
     {% vite_hmr_client %}
     {% vite_asset 'src/apps/favorite/favorites.js' %}
 {% endblock %}
-
-

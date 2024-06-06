@@ -1,57 +1,81 @@
 <template>
-    <div class="container mt-5">
-    <h2 class="mb-4">Your Favorites</h2>
-    <div class="row">
-    <span v-for="favorite in favorites">
-        <div class="col-md-3">
-            <div class="card mb-4 shadow-sm">
-                <img src="{{ favorite.product.image }}" class="card-img-top" alt="{{ favorite.product_name }}">
-                <div class="card-body">
-                    <h5 class="card-title">{{ favorite.product_name }}</h5>
-                    <p class="card-text">${{ favorite.product.price }}</p>
-                    <a href="{% url 'shop:product_show' favorite.product_id %}" class="btn btn-primary btn-block">View Product</a>
-                    <button @click="removeFavorite(favorite.product_id)" class="btn btn-danger btn-block">Remove from Favorites</button>
-                </div>
-            </div>
+    <div class="favorites-container">
+      <h2>Your Favorites</h2>
+      <div class="favorite-product" v-for="favorite in favorites" :key="favorite.id">
+        <div class="product-info">
+          <h3>{{ favorite.title }}</h3>
+          <p>Price: ${{ favorite.price }}</p>
+          <button @click="removeFromFavorites(favorite.id)">Remove from Favorites</button>
         </div>
-    </span>
+      </div>
     </div>
-</div>
-</template>
-
-<script>
-export default {
+  </template>
+  
+  <script>
+  export default {
     name: 'Favorites',
     data() {
-        return {
-            product: {},
-            quantity: 1,
-            isFavorite: false,
-            product_show_json_url: ext_product_show_json_url,
-            add_to_favorites_url: ext_add_to_favorites_url,
-            remove_from_favorites_url: ext_remove_from_favorites_url,
-            csrfToken: ext_csrf_token,
-            thumbnailImages: [] // Assuming we have multiple images for thumbnails
-            }
-        },
+      return {
+        favorites: [] // Array to store user's favorite products
+      };
+    },
+    created() {
+      this.fetchFavoritesFromBackend();
+    },
     methods: {
-        toggleFavorite() {
-            this.isFavorite = !this.isFavorite;
-            const url = this.isFavorite ? this.add_to_favorites_url : this.remove_from_favorites_url;
-            fetch(url, {
-                method: 'post',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': this.csrfToken,
-                },
-                body: JSON.stringify({ product_name: this.product.title }),
-            }).then(response => {
-                if (!response.ok) {
-                    console.error('Error updating favorite status');
-                }
-            });
-        },
+      fetchFavoritesFromBackend() {
+        fetch('/fetch-favorites/', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': this.getCookie('csrftoken') // Get CSRF token from cookies
+          },
+        })
+        .then(response => response.json())
+        .then(data => {
+          this.favorites = data.favorites;
+        })
+        .catch(error => {
+          console.error('Error fetching favorites:', error);
+        });
+      },
+      getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+          const cookies = document.cookie.split(';');
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+            }
+          }
+        }
+        return cookieValue;
+      },
+      removeFromFavorites(productId) {
+        fetch(`/remove-from-favorites/${productId}/`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': this.getCookie('csrftoken') // Get CSRF token from cookies
+          },
+        })
+        .then(response => {
+          if (response.ok) {
+            this.favorites = this.favorites.filter(favorite => favorite.id !== productId);
+          } else {
+            console.error('Failed to remove from favorites');
+          }
+        })
+        .catch(error => {
+          console.error('Error removing from favorites:', error);
+        });
+      },
     }
-}
-</script>
+  };
+  </script>
+  
+  <style scoped>
+  </style>
+  

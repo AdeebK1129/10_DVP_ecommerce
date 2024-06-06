@@ -1,5 +1,6 @@
 from django.urls import path
 from .views import ProductShowView, ProductShowJsonView, AddFavoriteView, RemoveFavoriteView, UserFavoritesView
+from . import views
 
 app_name = 'shop'
 
@@ -9,4 +10,5 @@ urlpatterns = [
     path('favorites/add/<int:product_id>/', AddFavoriteView.as_view(), name='add_to_favorites'),
     path('favorites/remove/<int:product_id>/', RemoveFavoriteView.as_view(), name='remove_from_favorites'),
     path('favorites/', UserFavoritesView.as_view(), name='user_favorites'),
+    path('fetch-favorites/', views.fetch_favorites, name='fetch_favorites'),
 ]

@@ -69,3 +69,11 @@ class UserFavoritesView(View):
     def get(self, request):
         favorites = Favorite.objects.filter(user=request.user).select_related('product')
         return render(request, 'shop/favorites.html', {'favorites': favorites})
+
+@login_required
+def fetch_favorites(request):
+    if request.user.is_authenticated:
+        favorites = Favorite.objects.filter(user=request.user).values('product__id', 'product__title', 'product__price')
+        return JsonResponse({'favorites': list(favorites)})
+    else:
+        return JsonResponse({'error': 'User not authenticated'}, status=401)
