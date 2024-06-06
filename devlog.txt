@@ -19,3 +19,5 @@ JeffC --2024-06-03 14:45: got the first matplotlib graph displaying in django vi
 JeffC --2024-06-03 17:06: added matplotlib graphs to compare prices for each individual product 
 
 TylerC --2024-06-03 19:00: implementing vue for favorites - ran into several bugs
+
+TylerC --2024-06-06 17:31: connected vue to the database - slightly bad code and need to work with others to fully debug
