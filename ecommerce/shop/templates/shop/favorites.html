@@ -1,4 +1,6 @@
 {% extends "core/base.html" %}
+{% load django_vite %}
+
 
 {% block content %}
 <div class="container">
@@ -11,7 +13,6 @@
                     <h5 class="card-title">{{ favorite.product.title }}</h5>
                     <p class="card-text">Price: ${{ favorite.product.price }}</p>
                     <p class="card-text">Category: {{ favorite.product.category }}</p>
-                    <!-- Add more fields as needed -->
                 </div>
             </div>
         </div>
@@ -19,4 +20,14 @@
     </div>
 </div>
 {% endblock %}
+
+
+{% block js %}
+    {{ block.super }}
+    <script>
+    </script>
+    {% vite_hmr_client %}
+    {% vite_asset 'src/apps/favorite/favorites.js' %}
+{% endblock %}
+
 
