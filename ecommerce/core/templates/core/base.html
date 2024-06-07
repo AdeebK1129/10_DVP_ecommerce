@@ -4,46 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}Ali Mama{% endblock %}</title>
-    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero {
+            background-color: #000;
+            color: #fff;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 48px;
+            font-weight: bold;
+        }
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'core:home' %}">Ali Mama</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'shop:user_favorites' %}">Favorites</a>
-                    </li>
-                    <li class="nav-item">
-                        <span class="navbar-text">Hello, {{ user.username }}!</span>
-                    </li>
-                    <li class="nav-item">
-                        <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-link nav-link" style="display: inline; cursor: pointer;">Log Out</button>
-                        </form>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users:register' %}">Sign Up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'users:login' %}">Log In</a>
-                    </li>
-                {% endif %}
-            </ul>
+    <header class="bg-dark py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="navbar-brand text-white" href="{% url 'core:home' %}">Ali Mama</a>
+                </div>
+                <div class="col-md-6">
+                    <nav class="navbar navbar-expand-lg navbar-dark">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class="navbar-nav ml-auto">
+                                {% if user.is_authenticated %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'shop:user_favorites' %}">Favorites</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-link nav-link" style="display: inline; cursor: pointer;">Log Out</button>
+                                        </form>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'users:register' %}">Sign Up</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'users:login' %}">Log In</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
         </div>
-    </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Ali Mama</h1>
+            <p>{% if user.is_authenticated %}
+                    <span>Hello, {{ user.username }}!</span>
+                {% else %}
+                    <a href="{% url 'users:register' %}">Sign Up</a> or
+                    <a href="{% url 'users:login' %}">Log In</a>
+                {% endif %}
+            </p>
+        </div>
+    </section>
 
     <div class="container">
         {% block content %}
         {% endblock %}
     </div>
+
     {% block js %}
     {% endblock js %}
 
