@@ -15,3 +15,9 @@ AdeebK --2024-06-03 02:13: Created models for Product, added notebook to populat
 JeffC --2024-06-03 12:55: began using pandas to sort data, created a graph to model the average price for each category, will continue to work on more graphs 
 
 JeffC --2024-06-03 14:45: got the first matplotlib graph displaying in django views, will work on graphs for each product 
+
+JeffC --2024-06-03 17:06: added matplotlib graphs to compare prices for each individual product 
+
+TylerC --2024-06-03 19:00: implementing vue for favorites - ran into several bugs
+
+TylerC --2024-06-06 17:31: connected vue to the database - slightly bad code and need to work with others to fully debug
