@@ -14,7 +14,7 @@
                 <button @click="toggleFavorite" :class="['favorite-button', isFavorite ? 'favorited' : '']">
                     {{ isFavorite ? 'Remove from Favorites' : 'Add to Favorites' }}
                 </button>
-                <button class="order-now-button">Order Now</button>
+                <button class="order-now-button">Add to Cart</button>
             </div>
             <div class="quantity-selector">
                 <button @click="decreaseQuantity" class="quantity-button">-</button>

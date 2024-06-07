@@ -11,10 +11,11 @@ import requests
 def home(request):
     response = requests.get('https://fakestoreapi.com/products/categories')
     categories = response.json()
-    
+    print(categories)
     products = Product.objects.values('category', 'price')
-    
+    print(products)
     df_products = pd.DataFrame(list(products))
+
     
     categorygroup = df_products.groupby('category')
 

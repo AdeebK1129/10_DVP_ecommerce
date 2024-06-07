@@ -62,10 +62,9 @@
         country: '',
         zip: '',
         submitted: false,
-        totalAmount: 50.00, // Example total amount
+        totalAmount: 0.01, // Example total amount
         client: {
-          sandbox: 'AXaQRBhdOpEM2tZwNo-X_0hrOpdKHRBUvImQcMF4WQDC-s6dsAOUv-ksk8YXGTgp1et10zWsU7Btv1zu',
-          production: 'your_production_client_id'
+          sandbox: 'AXaQRBhdOpEM2tZwNo-X_0hrOpdKHRBUvImQcMF4WQDC-s6dsAOUv-ksk8YXGTgp1et10zWsU7Btv1zu',  
         }
       };
     },
