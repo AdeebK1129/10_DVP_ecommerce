@@ -108,14 +108,14 @@ class RemoveFromCart(View):
 @method_decorator(login_required, name='dispatch')
 class UserCartView(View):
     def get(self, request):
-        items = CartItem.objects.filter(user=request.user).select_related('product')
-        return render(request, 'shop/cart.html', {'items': items})
+        carts = CartItem.objects.filter(user=request.user).select_related('product')
+        return render(request, 'shop/cart.html', {'carts': carts})
 
 @login_required
 def fetch_cart(request):
     if request.user.is_authenticated:
-        items = CartItem.objects.filter(user=request.user).values('product__id', 'product__title', 'product__price')
-        return JsonResponse({'cart': list(items)})
+        carts = CartItem.objects.filter(user=request.user).values('product__id', 'product__title', 'product__price')
+        return JsonResponse({'carts': list(carts)})
     else:
         return JsonResponse({'error': 'User not authenticated'}, status=401)
     
