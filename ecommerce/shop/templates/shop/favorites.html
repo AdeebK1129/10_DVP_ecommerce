@@ -3,8 +3,28 @@
 
 
 {% block content %}
-<div id="app">
-    <favorites></favorites>
+<div class="container">
+    <h2>Your Favorites</h2>
+    <div class="row">
+        {% for favorite in favorites %}
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm h-100">
+                <div class="card-img-top-container">
+                    <img src="{{ favorite.product.image }}" class="card-img-top" alt="{{ product.title }}">
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ favorite.product.title }}</h5>
+                    <p class="card-text">${{ favorite.product.price }}</p>
+                    <a href="{% url 'shop:product_show' favorite.product.id %}" class="btn btn-primary mt-auto">View Product</a>
+                    <form method="post" action="{% url 'shop:remove_favorite' favorite.product.id %}" class="mt-auto">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger mt-auto">Remove from Favorites</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
 
