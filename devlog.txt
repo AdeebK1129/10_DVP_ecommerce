@@ -22,6 +22,8 @@ TylerC --2024-06-03 19:00: implementing vue for favorites - ran into several bug
 
 TylerC --2024-06-06 17:31: connected vue to the database - slightly bad code and need to work with others to fully debug
 
+JeffC --2024-06-07 14:15: made some changes to base css
+
 TylerC --2024-06-08 21:30: working favorites page, displays according to database
 
 TylerC --2024-06-10 22:30: fully functional favorites page, with remove from favorites and view product buttons
