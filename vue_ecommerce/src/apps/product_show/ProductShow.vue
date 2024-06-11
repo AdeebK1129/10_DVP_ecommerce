@@ -15,6 +15,7 @@
                     {{ isFavorite ? 'Remove from Favorites' : 'Add to Favorites' }}
                 </button>
                 <button class="order-now-button" @click="addToCart">Add to Cart</button>
+                {{ addedToCart ? 'Remove from Cart' : 'Add to Cart' }}
             </div>
             <div class="quantity-selector">
                 <button @click="decreaseQuantity" class="quantity-button">-</button>
@@ -33,9 +34,12 @@ export default {
             product: {},
             quantity: 1,
             isFavorite: false,
-            product_show_json_url: ext_product_show_json_url,
+            addedToCart: false,
             add_to_favorites_url: ext_add_to_favorites_url,
             remove_from_favorites_url: ext_remove_from_favorites_url,
+            product_show_json_url: ext_product_show_json_url,
+            add_to_cart_url: ext_add_to_cart_url,
+            remove_from_cart_url: ext_remove_from_cart_url,
             csrfToken: ext_csrf_token,
             thumbnailImages: [] // Assuming we have multiple images for thumbnails
         };
@@ -79,15 +83,21 @@ export default {
             this.quantity++;
         },
         addToCart() {
-            console.log('add to cart')
-            if(isNaN(this.quantity) || (this.quantity < 1)){
-                this.quantity = 1;
-            }
-            const item = {
-                product: this.product,
-                quantity: this.quantity
-            }
-
+            this.addedToCart = !this.addedToCart;
+            const url = this.addedToCart ? this.add_to_cart_url : this.remove_from_cart_url;
+            fetch(url, {
+                method: 'post',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': this.csrfToken,
+                },
+                body: JSON.stringify({ product_name: this.product.title }),
+            }).then(response => {
+                if (!response.ok) {
+                    console.error('Error updating cart status');
+                }
+            });
         },
     },
     beforeMount() {

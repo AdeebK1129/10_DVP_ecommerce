@@ -16,6 +16,8 @@
         var ext_product_show_json_url = '{% url "shop:product_show_json" product_id %}';
         var ext_add_to_favorites_url = '{% url "shop:add_to_favorites" product_id %}';
         var ext_remove_from_favorites_url = '{% url "shop:remove_favorite" product_id %}';
+        var ext_add_to_cart_url = '{% url "shop:add_to_cart" product_id %}';
+        var ext_remove_from_cart_url = '{% url "shop:remove_cart" product_id"}';
     </script>
     {% vite_hmr_client %}
     {% vite_asset 'src/apps/product_show/product_show.js' %}

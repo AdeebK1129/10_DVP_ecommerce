@@ -3,7 +3,7 @@ from django.http import JsonResponse, HttpResponseBadRequest
 from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Favorite, Product
+from .models import Favorite, Product, CartItem
 import pandas as pd 
 import io
 import base64
@@ -75,6 +75,47 @@ def fetch_favorites(request):
     if request.user.is_authenticated:
         favorites = Favorite.objects.filter(user=request.user).values('product__id', 'product__title', 'product__price')
         return JsonResponse({'favorites': list(favorites)})
+    else:
+        return JsonResponse({'error': 'User not authenticated'}, status=401)
+    
+
+@method_decorator(login_required, name='dispatch')
+class AddToCart(View):
+    def post(self, request, *args, **kwargs):
+        product_id = kwargs.get('product_id')
+        product = get_object_or_404(Product, id=product_id)
+        
+        item, created = CartItem.objects.get_or_create(
+            user=request.user,
+            product=product,
+            defaults={'quantity': 1}  # Ensure quantity is set
+        )
+        
+        if not created:
+            item.quantity += 1
+            item.save()
+        
+        return JsonResponse({'success': True, 'quantity': item.quantity})
+
+
+@method_decorator(login_required, name='dispatch')
+class RemoveFromCart(View):
+    def post(self, request, product_id):
+        item = get_object_or_404(CartItem, user=request.user, product_id=product_id)
+        item.delete()
+        return redirect('shop:user_cart')
+
+@method_decorator(login_required, name='dispatch')
+class UserCartView(View):
+    def get(self, request):
+        items = CartItem.objects.filter(user=request.user).select_related('product')
+        return render(request, 'shop/cart.html', {'items': items})
+
+@login_required
+def fetch_cart(request):
+    if request.user.is_authenticated:
+        items = CartItem.objects.filter(user=request.user).values('product__id', 'product__title', 'product__price')
+        return JsonResponse({'cart': list(items)})
     else:
         return JsonResponse({'error': 'User not authenticated'}, status=401)
     
