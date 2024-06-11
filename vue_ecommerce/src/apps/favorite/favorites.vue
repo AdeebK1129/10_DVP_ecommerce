@@ -17,31 +17,13 @@
 
 <script>
 export default {
+  name: 'Favorites',
   data() {
     return {
-      favorites: []
+      favorites: favorites,
     };
   },
-  created() {
-    this.fetchFavoritesFromBackend();
-  },
   methods: {
-    fetchFavoritesFromBackend() {
-      fetch('/fetch-favorites/', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': this.getCookie('csrftoken') // Get CSRF token from cookies
-        }
-      })
-      .then(response => response.json())
-      .then(data => {
-        this.favorites = data.favorites;
-      })
-      .catch(error => {
-        console.error('Error fetching favorites:', error);
-      });
-    },
     removeFavorite(favoriteId) {
       fetch(`/remove-favorite/${favoriteId}/`, {
         method: 'POST',

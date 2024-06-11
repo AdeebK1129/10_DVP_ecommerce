@@ -1,5 +1,5 @@
 import 'vite/modulepreload-polyfill';
 import { createApp } from 'vue';
-import ProductShow from './favorites.vue';
+import Favorites from './favorites.vue';
 
-createApp(ProductShow).mount('#app');
+createApp(Favorites).mount('#app');

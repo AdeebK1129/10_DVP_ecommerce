@@ -14,7 +14,7 @@
                 <button @click="toggleFavorite" :class="['favorite-button', isFavorite ? 'favorited' : '']">
                     {{ isFavorite ? 'Remove from Favorites' : 'Add to Favorites' }}
                 </button>
-                <button class="order-now-button">Add to Cart</button>
+                <button class="order-now-button" @click="addToCart">Add to Cart</button>
             </div>
             <div class="quantity-selector">
                 <button @click="decreaseQuantity" class="quantity-button">-</button>
@@ -79,8 +79,15 @@ export default {
             this.quantity++;
         },
         addToCart() {
-            // Implement the logic to add the product to the cart
-            console.log(`Adding ${this.quantity} of product ${this.product.id} to cart.`);
+            console.log('add to cart')
+            if(isNaN(this.quantity) || (this.quantity < 1)){
+                this.quantity = 1;
+            }
+            const item = {
+                product: this.product,
+                quantity: this.quantity
+            }
+
         },
     },
     beforeMount() {

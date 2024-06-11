@@ -3,21 +3,8 @@
 
 
 {% block content %}
-<div class="container">
-    <h2>Your Favorites</h2>
-    <div class="row">
-        {% for favorite in favorites %}
-        <div class="col-md-3">
-            <div class="card mb-4 shadow-sm">
-                <div class="card-body">
-                    <h5 class="card-title">{{ favorite.product.title }}</h5>
-                    <p class="card-text">Price: ${{ favorite.product.price }}</p>
-                    <p class="card-text">Category: {{ favorite.product.category }}</p>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+<div id="app">
+    <favorites></favorites>
 </div>
 {% endblock %}
 
@@ -25,6 +12,7 @@
 {% block js %}
     {{ block.super }}
     <script>
+        var favorites = {{ favorites | safe }};
     </script>
     {% vite_hmr_client %}
     {% vite_asset 'src/apps/favorite/favorites.js' %}
