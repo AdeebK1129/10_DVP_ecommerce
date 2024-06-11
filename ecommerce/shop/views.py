@@ -11,7 +11,7 @@ import matplotlib
 matplotlib.use('Agg')  
 import matplotlib.pyplot as plt
 import json
-
+from django.conf import settings
 class ProductShowView(View):
     def get(self, request, product_id):
         product = get_object_or_404(Product, pk=product_id)
@@ -118,5 +118,14 @@ def fetch_cart(request):
         return JsonResponse({'carts': list(carts)})
     else:
         return JsonResponse({'error': 'User not authenticated'}, status=401)
-    
 
+@login_required
+def checkout_view(request):
+    carts = CartItem.objects.filter(user=request.user)
+    total_price = sum(cart.product.price * cart.quantity for cart in carts)
+    context = {
+        'carts': carts,
+        'total_price': total_price,
+        'paypal_client_id': settings.PAYPAL_CLIENT_ID,
+    }
+    return render(request, 'shop/checkout.html', context)

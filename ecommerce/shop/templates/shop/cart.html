@@ -25,12 +25,15 @@
         {% endfor %}
     </div>
 </div>
+<a href="{% url 'shop:checkout' %}" class="btn btn-success">Proceed to Checkout</a>
+</div>
+</div>
 {% endblock %}
 
 {% block js %}
     {{ block.super }}
     <script>
-        var items = {{ items | safe }};
+        var carts = {{ carts | safe }};
     </script>
     {% vite_hmr_client %}
     {% vite_asset 'src/apps/store/cart.js' %}

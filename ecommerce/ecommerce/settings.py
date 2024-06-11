@@ -2,11 +2,12 @@ import os
 import json
 from pathlib import Path
 from django.core.exceptions import ImproperlyConfigured
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 with open(os.path.join(BASE_DIR, 'ecommerce', 'secrets.json')) as f:
     secrets = json.loads(f.read())
+    
+PAYPAL_CLIENT_ID = secrets['PAYPAL_CLIENT_ID']
 
 def get_secret(setting, secrets=secrets):
     try:

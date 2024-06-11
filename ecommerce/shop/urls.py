@@ -15,4 +15,6 @@ urlpatterns = [
     path('remove-cart/<int:product_id>/', views.RemoveFromCart.as_view(), name='remove_cart'),
     path('cart/', UserCartView.as_view(), name='user_cart'),
     path('fetch-cart/', views.fetch_cart, name='fetch_cart'),
+    path('checkout/', views.checkout_view, name='checkout'),
+
 ]
