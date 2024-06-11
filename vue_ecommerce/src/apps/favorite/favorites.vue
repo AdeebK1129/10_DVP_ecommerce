@@ -20,7 +20,7 @@ export default {
   name: 'Favorites',
   data() {
     return {
-      favorites: favorites,
+      favorites: favorites, 
     };
   },
   methods: {

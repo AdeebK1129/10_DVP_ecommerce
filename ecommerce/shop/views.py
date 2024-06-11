@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.views import View
 from django.contrib.auth.decorators import login_required
@@ -62,7 +62,7 @@ class RemoveFavoriteView(View):
     def post(self, request, product_id):
         favorite = get_object_or_404(Favorite, user=request.user, product_id=product_id)
         favorite.delete()
-        return JsonResponse({'message': 'Removed from favorites'})
+        return redirect('shop:user_favorites')
 
 @method_decorator(login_required, name='dispatch')
 class UserFavoritesView(View):
@@ -77,3 +77,5 @@ def fetch_favorites(request):
         return JsonResponse({'favorites': list(favorites)})
     else:
         return JsonResponse({'error': 'User not authenticated'}, status=401)
+    
+
