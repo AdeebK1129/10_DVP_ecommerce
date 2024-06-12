@@ -14,7 +14,7 @@
                 <button @click="toggleFavorite" :class="['favorite-button', isFavorite ? 'favorited' : '']">
                     {{ isFavorite ? 'Remove from Favorites' : 'Add to Favorites' }}
                 </button>
-                <button @click="addToCart" :class="['order-now-button', addedToCart ? 'carted' : '']">
+                <button @click="addToCart()" :class="['order-now-button', addedToCart ? 'carted' : '']">
                     {{ addedToCart ? 'Remove from Cart' : 'Add to Cart' }}
                 </button>
             </div>
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import { setTransitionHooks } from 'vue';
+
 export default {
     name: 'ProductShow',
     data() {
@@ -82,8 +84,11 @@ export default {
         },
         increaseQuantity() {
             this.quantity++;
+            console.log(this.quantity)
         },
         addToCart() {
+            const quantity = this.quantity
+            console.log(quantity)
             this.addedToCart = !this.addedToCart;
             const url = this.addedToCart ? this.add_to_cart_url : this.remove_from_cart_url;
             fetch(url, {
@@ -93,7 +98,7 @@ export default {
                     'Content-Type': 'application/json',
                     'X-CSRFToken': this.csrfToken,
                 },
-                body: JSON.stringify({ product_name: this.product.title }),
+                body: JSON.stringify({ product_name: this.product.title, quantity: quantity }),
             }).then(response => {
                 if (!response.ok) {
                     console.error('Error updating cart status');

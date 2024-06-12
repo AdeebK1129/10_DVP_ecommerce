@@ -4,6 +4,8 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from .models import Favorite, Product, CartItem, Order
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 import pandas as pd 
 import io
 import base64
@@ -80,23 +82,29 @@ def fetch_favorites(request):
         return JsonResponse({'error': 'User not authenticated'}, status=401)
     
 
-@method_decorator(login_required, name='dispatch')
-class AddToCart(View):
-    def post(self, request, *args, **kwargs):
-        product_id = kwargs.get('product_id')
-        product = get_object_or_404(Product, id=product_id)
-        
-        item, created = CartItem.objects.get_or_create(
-            user=request.user,
-            product=product,
-            defaults={'quantity': 1}  # Ensure quantity is set
-        )
-        
-        if not created:
-            item.quantity += 1
-            item.save()
-        
-        return JsonResponse({'success': True, 'quantity': item.quantity})
+@csrf_exempt
+@require_POST
+def AddToCart(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    
+    try:
+        data = json.loads(request.body)
+        quantity = data.get('quantity', 1)
+        quantity = int(quantity)
+        if quantity < 1:
+            quantity = 1  # Ensure quantity is at least 1
+    except (ValueError, TypeError, KeyError, json.JSONDecodeError):
+        return JsonResponse({'success': False, 'error': 'Invalid quantity'}, status=400)
+    
+    cart_item, created = CartItem.objects.get_or_create(
+        user=request.user, product=product,
+        defaults={'quantity': quantity}
+    )
+    if not created:
+        cart_item.quantity += quantity
+        cart_item.save()
+    
+    return JsonResponse({'success': True})
 
 
 @method_decorator(login_required, name='dispatch')
