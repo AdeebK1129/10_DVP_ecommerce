@@ -8,11 +8,15 @@ AdeebK --2024-05-27 16:39: Added URL to product detail page, preparing connectio
 
 AdeebK --2024-05-29 14:37: Fixed bug in Django to Vue configuration. Set up basic layout for favorites list page. 
 
+JohnC --2024-05-05-30 14:48: Started to work on ATC and Checkout; This is going to be the last step in the project, so I'll just test my code w/o pushing for now
+
 TylerC --2024-05-05-30 14:48: Added Vue app for favorites section, replacing Django template. Awaiting models reconfiguration for addition of products.
 
 AdeebK --2024-06-03 02:13: Created models for Product, added notebook to populate database with Products from Public API. Updated design doc, setup documentation, and db diagram. 
 
 JeffC --2024-06-03 12:55: began using pandas to sort data, created a graph to model the average price for each category, will continue to work on more graphs 
+
+JohnC --2024-06-03 2:40: Tried to help Jeff debug but I think I made it worse
 
 JeffC --2024-06-03 14:45: got the first matplotlib graph displaying in django views, will work on graphs for each product 
 
@@ -21,3 +25,23 @@ JeffC --2024-06-03 17:06: added matplotlib graphs to compare prices for each ind
 TylerC --2024-06-03 19:00: implementing vue for favorites - ran into several bugs
 
 TylerC --2024-06-06 17:31: connected vue to the database - slightly bad code and need to work with others to fully debug
+
+JohnC --2024-06-11 16:00: finished ATC process and implemented checkout page- checkout page is admittedly pretty buggy.
+
+JohnC --2024-06-11 17:30: Fixed checkout page- PayPal checkout should work now. Also created a splash landing page upon successful checkout, and fixed a bug with the ATC button.
+
+JohnC --2024-06-11 18:10 Created orders.vue component to display each order with details and action buttons to view and cancel orders.
+
+JohnC --2024-06-11 18:20 Created orders.js file to mount the orders.vue component to the DOM.
+
+JohnC --2024-06-11 18:30 Updated the Django view orders_view to fetch orders from the database and pass them to the template context.
+
+JohnC --2024-06-11 18:40 Created orders.html template to load the orders.js script and pass the orders data to the Vue component.
+
+JohnC --2024-06-11 19:20 Updated the orders.html template to ensure it correctly passes the orders data and includes the necessary Vue setup.
+
+JohnC --2024-06-11 19:30 Encountered an error where Order images are not being correctly displayed in orders.html.
+
+
+
+

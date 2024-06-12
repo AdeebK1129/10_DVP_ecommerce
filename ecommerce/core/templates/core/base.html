@@ -44,6 +44,9 @@
                                         <a class="nav-link" href="{% url 'shop:user_cart' %}">Cart</a>
                                     </li>
                                     <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'shop:orders' %}">Orders</a>
+                                    </li>
+                                    <li class="nav-item">
                                         <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
                                             {% csrf_token %}
                                             <button type="submit" class="btn btn-link nav-link" style="display: inline; cursor: pointer;">Log Out</button>

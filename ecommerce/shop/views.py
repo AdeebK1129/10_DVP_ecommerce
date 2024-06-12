@@ -153,3 +153,10 @@ def create_order(request):
 def payment_successful(request, order_id):
     order = get_object_or_404(Order, id=order_id)
     return render(request, 'shop/payment_success.html', {'order': order})
+
+def orders_view(request):
+    orders = Order.objects.filter(user=request.user)
+    context = {
+        'orders': list(orders.values('id', 'order_date', 'products')),
+    }
+    return render(request, 'shop/orders.html', context)

@@ -14,8 +14,9 @@
                 <button @click="toggleFavorite" :class="['favorite-button', isFavorite ? 'favorited' : '']">
                     {{ isFavorite ? 'Remove from Favorites' : 'Add to Favorites' }}
                 </button>
-                <button class="order-now-button" @click="addToCart">Add to Cart</button>
-                {{ addedToCart ? 'Remove from Cart' : 'Add to Cart' }}
+                <button @click="addToCart" :class="['order-now-button', addedToCart ? 'carted' : '']">
+                    {{ addedToCart ? 'Remove from Cart' : 'Add to Cart' }}
+                </button>
             </div>
             <div class="quantity-selector">
                 <button @click="decreaseQuantity" class="quantity-button">-</button>
@@ -177,8 +178,8 @@ export default {
     background-color: red; /* Change color when favorited */
 }
 
-.order-now-button {
-    background-color: #000;
+.order-now-button.carted {
+    background-color: red;
 }
 
 .quantity-selector {
