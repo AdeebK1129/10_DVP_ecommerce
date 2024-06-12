@@ -106,8 +106,13 @@ secrets.json Template
     "database_host": "localhost", 
     "database_port": "5432",
     "vite_dev_server_port": "5173"
+    "PAYPAL_CLIENT_ID": "YOURCLIENTID",
 }
 ```
+## How to get your Paypal Client ID
+In order to make this website work as intended, you MUST use a client ID. It is unique for every user, and is automatically generated for each paypal account.
+In order to obtain your paypal client ID, navigate to the following link: https://developer.paypal.com/dashboard/applications/sandbox
+Once there, copy the Client ID and paste it inside of your secrets.json file. 
 
 In one terminal window, the user should navigate to the vue_ecommerce folder and run
 ```
@@ -131,5 +136,12 @@ python manage.py runserver
 
 
 The user should go to the URL prompted by this which is likely to look something like http://localhost:8000. Do note that this url is determined by what was put in the secrets.json file so if the user puts a different specified URL in secrets.json, the URL will look different. 
+
+## Working with Paypal Checkout
+
+ There is a chance that the Paypal Checkout feature will be stuck loading infinitely. Rest assured, this is not an error on our end: Paypal is simply extremely buggy. In the case tha this happens, try to either refresh the page or click the 'x' button in the corner.
+
+ In order to sucessfully check out on our website, you're going to need some type of credit/debit card. You can generate a fake one here: https://developer.paypal.com/api/rest/sandbox/card-testing/
+
 
 
