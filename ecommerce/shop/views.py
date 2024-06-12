@@ -3,7 +3,7 @@ from django.http import JsonResponse, HttpResponseBadRequest
 from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .models import Favorite, Product, CartItem
+from .models import Favorite, Product, CartItem, Order
 import pandas as pd 
 import io
 import base64
@@ -12,6 +12,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import json
 from django.conf import settings
+from django.utils import timezone
 class ProductShowView(View):
     def get(self, request, product_id):
         product = get_object_or_404(Product, pk=product_id)
@@ -120,6 +121,7 @@ def fetch_cart(request):
         return JsonResponse({'error': 'User not authenticated'}, status=401)
 
 @login_required
+
 def checkout_view(request):
     carts = CartItem.objects.filter(user=request.user)
     total_price = sum(cart.product.price * cart.quantity for cart in carts)
@@ -129,3 +131,25 @@ def checkout_view(request):
         'paypal_client_id': settings.PAYPAL_CLIENT_ID,
     }
     return render(request, 'shop/checkout.html', context)
+
+def create_order(request):
+    if request.method == 'POST':
+        body = json.loads(request.body)
+        order_id = body['orderID']
+        
+        carts = CartItem.objects.filter(user=request.user)
+        product_names = ", ".join([cart.product.title for cart in carts])
+        
+        order = Order.objects.create(
+            user=request.user,
+            order_date=timezone.now(),
+            products=product_names,
+        )
+        
+        carts.delete()
+        
+        return JsonResponse({'order_id': order.id})
+
+def payment_successful(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    return render(request, 'shop/payment_success.html', {'order': order})

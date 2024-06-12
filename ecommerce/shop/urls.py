@@ -16,5 +16,8 @@ urlpatterns = [
     path('cart/', UserCartView.as_view(), name='user_cart'),
     path('fetch-cart/', views.fetch_cart, name='fetch_cart'),
     path('checkout/', views.checkout_view, name='checkout'),
+    path('payment-successful/<int:order_id>/', views.payment_successful, name='payment_successful'),
+    path('create-order/', views.create_order, name='create_order'),
+
 
 ]

@@ -1,0 +1,12 @@
+{% extends "core/base.html" %}
+{% load django_vite %}
+
+{% block content %}
+<div class="container">
+    <h2>Payment Successful</h2>
+    <p>Thank you for your purchase, {{ order.user.username }}!</p>
+    <p>Order Date: {{ order.order_date }}</p>
+    <p>Products: {{ order.products }}</p>
+</div>
+{% endblock %}
+

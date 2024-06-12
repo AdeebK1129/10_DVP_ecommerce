@@ -35,7 +35,7 @@
 
 {% block js %}
     {{ block.super }}
-    <script src="https://www.paypal.com/sdk/js?client-id={{paypal_client_id}}"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id={{ paypal_client_id }}"></script>
     <script>
         paypal.Buttons({
             createOrder: function(data, actions) {
@@ -49,8 +49,20 @@
             },
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
-                    alert('Transaction completed by ' + details.payer.name.given_name);
-                    // Optionally, you can add code here to handle the transaction on the server
+                    fetch("{% url 'shop:create_order' %}", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRFToken": "{{ csrf_token }}"
+                        },
+                        body: JSON.stringify({
+                            orderID: details.id
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        window.location.href = "{% url 'shop:payment_successful' 12345 %}".replace('12345', data.order_id);
+                    });
                 });
             }
         }).render('#paypal-button-container');
