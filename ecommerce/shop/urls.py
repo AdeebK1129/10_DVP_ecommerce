@@ -18,7 +18,6 @@ urlpatterns = [
     path('checkout/', views.checkout_view, name='checkout'),
     path('payment-successful/<int:order_id>/', views.payment_successful, name='payment_successful'),
     path('create-order/', views.create_order, name='create_order'),
-    path('orders/', views.orders_view, name='orders')
-
-
+    path('orders/', views.orders_view, name='orders'),
+    path('orders/cancel/<int:order_id>/', views.cancel_order, name='cancel_order'),
 ]

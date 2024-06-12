@@ -160,3 +160,9 @@ def orders_view(request):
         'orders': list(orders.values('id', 'order_date', 'products')),
     }
     return render(request, 'shop/orders.html', context)
+
+def cancel_order(request, order_id):
+    if request.method == "POST":
+        order = get_object_or_404(Order, id=order_id, user=request.user)
+        order.delete()
+        return redirect('shop:orders')

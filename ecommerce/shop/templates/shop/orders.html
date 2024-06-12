@@ -3,19 +3,18 @@
 
 {% block content %}
 <div class="container">
+    
     <h2>Your Orders</h2>
     <div class="row">
         {% for order in orders %}
         <div class="col-md-3">
             <div class="card mb-4 shadow-sm h-100">
-                <div class="card-img-top-container">
-                    <img src="./images/receipt-solid.svg" class="img-thumbnail" style="max-width: 100px;">
-                </div>
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title" style="font: 16px;">{{ order.order_date }}</h5>
-                    <p class="card-text">${{ order.products }}</p>
+                    <i class="fas fa-receipt fa-3x mt-3"></i>
+                    <p class="card-text">{{ order.products }}</p>
                     <a href="{% url 'shop:payment_successful' order.id %}" class="btn btn-primary mt-auto">View Order</a>
-                    <form method="post" action="{% url 'shop:payment_successful' order.id %}" class="mt-auto">
+                    <form method="post" action="{% url 'shop:cancel_order' order.id %}" class="mt-auto">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger mt-auto">Cancel Order</button>
                     </form>
