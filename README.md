@@ -111,8 +111,7 @@ secrets.json Template
 ```
 ## How to get your Paypal Client ID
 In order to make this website work as intended, you MUST use a client ID. It is unique for every user, and is automatically generated for each paypal account.
-In order to obtain your paypal client ID, navigate to the following link: https://developer.paypal.com/dashboard/applications/sandbox
-Once there, copy the Client ID and paste it inside of your secrets.json file. 
+In order to obtain your paypal client ID, navigate to the following link: https://developer.paypal.com/dashboard/applications/sandbox Once there, copy the Client ID and paste it inside of your secrets.json file. 
 
 In one terminal window, the user should navigate to the vue_ecommerce folder and run
 ```
