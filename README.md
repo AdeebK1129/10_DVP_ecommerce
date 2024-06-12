@@ -105,7 +105,7 @@ secrets.json Template
     "database_pwd": "YOURDATABASEPW", 
     "database_host": "localhost", 
     "database_port": "5432",
-    "vite_dev_server_port": "5173"
+    "vite_dev_server_port": "5173",
     "PAYPAL_CLIENT_ID": "YOURCLIENTID",
 }
 ```
