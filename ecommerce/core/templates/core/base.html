@@ -78,6 +78,16 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{% url 'shop:orders' %}">Orders</a>
                                     </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Categories
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            {% for category in categories %}
+                                                <a class="dropdown-item" href="{% url 'core:category' category %}">{{ category|title }}</a>
+                                            {% endfor %}
+                                        </div>
+                                    </li>
                                     <li class="nav-item">
                                         <form method="post" action="{% url 'users:logout' %}" style="display: inline;">
                                             {% csrf_token %}
@@ -100,9 +110,9 @@
         </div>
     </header>
 
+    {% block content %}
+    {% endblock %}
 
-        {% block content %}
-        {% endblock %}
 
     {% block js %}
     {% endblock js %}

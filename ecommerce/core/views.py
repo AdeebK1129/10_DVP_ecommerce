@@ -9,9 +9,6 @@ import matplotlib.pyplot as plt
 import requests
 
 def home(request):
-    response = requests.get('https://fakestoreapi.com/products/categories')
-    categories = response.json()
-
     products = Product.objects.values('category', 'price')
     df_products = pd.DataFrame(list(products))
     categorygroup = df_products.groupby('category')
@@ -30,7 +27,6 @@ def home(request):
     featured_products = Product.objects.all()[:5] 
 
     return render(request, 'core/home.html', {
-        'categories': categories,
         'plot_data': plot_data,
         'featured_products': featured_products,
     })
