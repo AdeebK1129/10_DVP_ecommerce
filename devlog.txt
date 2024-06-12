@@ -54,4 +54,9 @@ TylerC --2024-06-08 21:30: working favorites page, displays according to databas
 TylerC --2024-06-10 22:30: fully functional favorites page, with remove from favorites and view product buttons
 
 AdeebK --2024-06-11 15:29: Added functional carousel and modified hero section design for optimal look. Also ensured hero section only appears on home page. 
+
+JohnC --2024-06-12 01:09: Added webpage for recent orders, and fixed a bug with Paypal Checkout not correctly loading.
+JohnC --2024-06-12 12:10: Fixed an error in which the "Cancel Order" and "View Order" buttons were not working as intended in orders.html.
+JohnC-- 2024-06-12 15:47: Fixed a bug where item quantity was not being updated accordingly with the quantity field when carting.
+
 >>>>>>> 7d8e035ec493ee3df39d74c1b36445bfb3a4cc16
